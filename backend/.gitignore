@@ -1,0 +1,42 @@
+# Dependencies
+/node_modules
+
+# Environment Variables & Secrets
+.env
+.env*.local
+.env.production
+.env.staging
+*.env
+
+# SQLite Database Binary
+*.db
+*.db-journal
+*.sqlite
+prisma/*.db
+prisma/*.db-journal
+
+# SSL & Security Credentials
+*.pem
+*.key
+*.crt
+*.p12
+credentials.json
+service-account.json
+
+# Next.js & Build Output
+/.next/
+/dist/
+/build/
+
+# Logs & Debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# System & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

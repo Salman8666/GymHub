@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-emerald-300: #55f591;
+  --color-emerald-400: #1df269;
+  --color-emerald-500: #1df269;
+  --color-emerald-600: #15d65a;
+  --color-emerald-700: #0fc04f;
+  --color-emerald-800: #0a9b3f;
+}
+
+@layer base {
+  /* Athletic Minimal (Light) */
+  :root {
+    color-scheme: light;
+    --background: #fbf9f8;
+    --foreground: #1b1c1c;
+    --card: #ffffff;
+    --card-foreground: #1b1c1c;
+    --popover: #ffffff;
+    --popover-foreground: #1b1c1c;
+    --primary: #1df269;
+    --primary-foreground: #000000;
+    --signal-green: #1df269;
+    --signal-green-dark: #15d65a;
+    --secondary: #5f5e5e;
+    --secondary-foreground: #ffffff;
+    --muted: #efeded;
+    --muted-foreground: #6b6b6b;
+    --accent: #1df269;
+    --accent-foreground: #000000;
+    --destructive: #ba1a1a;
+    --destructive-foreground: #ffffff;
+    --border: #e4e2e2;
+    --input: #bacbb5;
+    --ring: #1df269;
+    --radius: 0.25rem;
+  }
+
+  /* Elite Command Center (Dark) */
+  .dark, .theme-elite {
+    color-scheme: dark;
+    --background: #0d0f12;
+    --foreground: #f2f4f7;
+    --card: #16191f;
+    --card-foreground: #f2f4f7;
+    --popover: #16191f;
+    --popover-foreground: #f2f4f7;
+    --primary: #1df269;
+    --primary-foreground: #000000;
+    --signal-green: #1df269;
+    --signal-green-dark: #15d65a;
+    --secondary: #262a36;
+    --secondary-foreground: #f2f4f7;
+    --muted: #1c202a;
+    --muted-foreground: #94a3b8;
+    --accent: #1df269;
+    --accent-foreground: #000000;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #262a36;
+    --input: #262a36;
+    --ring: #1df269;
+  }
+
+  /* Obsidian Cyber (Neon) */
+  .theme-obsidian {
+    color-scheme: dark;
+    --background: #05070a;
+    --foreground: #e6f7ec;
+    --card: #0b0e13;
+    --card-foreground: #e6f7ec;
+    --popover: #0b0e13;
+    --popover-foreground: #e6f7ec;
+    --primary: #2dff5f;
+    --primary-foreground: #000000;
+    --signal-green: #2dff5f;
+    --signal-green-dark: #1df269;
+    --secondary: #101826;
+    --secondary-foreground: #e6f7ec;
+    --muted: #0d1319;
+    --muted-foreground: #7f9c8f;
+    --accent: #2dff5f;
+    --accent-foreground: #000000;
+    --destructive: #ff4d6d;
+    --destructive-foreground: #ffffff;
+    --border: #1a2634;
+    --input: #1a2634;
+    --ring: #2dff5f;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--signal-green);
+  color: #000000;
+}
+
+/* Obsidian Cyber neon ambience */
+.theme-obsidian body {
+  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(45, 255, 95, 0.07), transparent 70%);
+  background-attachment: fixed;
+}
+
+/* Custom Design System Utility Classes */
+.bg-warm-paper {
+  background-color: #fbf9f8;
+}
+
+.bg-signal-green {
+  background-color: var(--signal-green);
+}
+
+.text-signal-green {
+  color: var(--signal-green);
+}
+
+.border-signal-green {
+  border-color: var(--signal-green);
+}
+
+.bg-charcoal {
+  background-color: #1b1c1c;
+}
+
+.text-charcoal {
+  color: #1b1c1c;
+}
+
+.label-caps {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stats-number {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--signal-green);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--signal-green-dark);
+}

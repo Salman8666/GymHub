@@ -1,0 +1,32 @@
+# Root Git Ignore for Gym Hub
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env*.local
+*.env
+
+# Databases
+*.db
+*.db-journal
+*.sqlite
+
+# Security & Credentials
+*.pem
+*.key
+*.crt
+credentials.json
+
+# Next.js Build Outputs
+.next/
+out/
+build/
+dist/
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
