@@ -70,9 +70,10 @@ export async function registerUser(input: RegisterInput) {
   };
 }
 
-export async function loginUser(input: z.infer<typeof loginSchema>) {
+export async function loginUser(input: LoginInput) {
+  const email = input.email.toLowerCase();
   const user = await prisma.user.findUnique({
-    where: { email: input.email.toLowerCase() },
+    where: { email },
     include: { trainerProfile: true },
   });
 
