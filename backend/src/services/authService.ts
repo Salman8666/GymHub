@@ -2,17 +2,15 @@ import { prisma } from '../lib/db';
 import { hashPassword, verifyPassword, signToken, UserSessionPayload } from '../lib/jwt';
 import { z } from 'zod';
 import { registerSchema, loginSchema } from '../schemas/auth';
-import { NextRequest, NextResponse } from 'next/server';
-import { registerSchema } from '@/schemas/auth';
-import { registerUser } from '@/services/authService';
-export async function registerUser(input: z.infer<typeof registerSchema>) {
-  const existingUser = await prisma.user.findUnique({
-    where: { email: input.email.toLowerCase() },
-  });
 
-  if (existingUser) {
-    throw new Error('USER_EXISTS: An account with this email already exists');
-  }
+type RegisterInput = z.infer<typeof registerSchema>;
+type LoginInput = z.infer<typeof loginSchema>;
+
+export async function registerUser(input: RegisterInput) {
+  const email = input.email.toLowerCase();
+  const existingUser = await prisma.user.findUnique({
+    where: { email },
+  });
 
   const hashedPassword = hashPassword(input.password);
 
