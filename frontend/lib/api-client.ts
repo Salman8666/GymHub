@@ -3,8 +3,7 @@
  * Connects frontend React state directly to the production Backend services (/api/*)
  */
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 function getAuthHeader(): Record<string, string> {
   if (typeof window === 'undefined') return {};
