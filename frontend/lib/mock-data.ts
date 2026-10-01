@@ -156,7 +156,7 @@ export const MOCK_TRAINERS: Trainer[] = [
     location: 'New York, NY (In-person & Virtual)',
     specialties: ['Hypertrophy Science', 'Strength & Power', 'Contest Prep', 'Biomechanics'],
     experienceYears: 12,
-    image: 'https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1606889464198-fcb18894cf50?auto=format&fit=crop&w=800&q=80',
     verified: true,
     featured: true,
     stats: {
@@ -196,7 +196,7 @@ export const MOCK_TRAINERS: Trainer[] = [
     location: 'Austin, TX',
     specialties: ['Powerlifting', 'Powerbuilding', 'Rehab Integration'],
     experienceYears: 8,
-    image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1574680376345-b2995af0324f?auto=format&fit=crop&w=600&q=80',
     verified: true,
     featured: false,
     stats: {
