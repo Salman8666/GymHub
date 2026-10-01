@@ -133,9 +133,9 @@ export const MOCK_GYMS: Gym[] = [
     address: '77 Forge Street, Austin, TX 78701',
     dayPassPrice: 20,
     monthlyPrice: 95,
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1623874514711-0f321325f318?auto=format&fit=crop&w=800&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1623874514711-0f321325f318?auto=format&fit=crop&w=800&q=80'
     ],
     amenities: ['Pose Lighting Room', 'Outdoor Strongman Pit', 'Supplement Depot'],
     equipment: ['Nautilus Vintage Machines', 'Atlas Stones', 'Log Press Cages'],
@@ -176,7 +176,7 @@ export const MOCK_TRAINERS: Trainer[] = [
     location: 'Los Angeles, CA',
     specialties: ['Olympic Lifting', 'Athletic Speed', 'Mobility & Rehab', 'Kettlebell Mastery'],
     experienceYears: 9,
-    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1604480133435-25b86862d276?auto=format&fit=crop&w=600&q=80',
     verified: true,
     featured: true,
     stats: {
