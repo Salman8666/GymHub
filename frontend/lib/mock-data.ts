@@ -95,7 +95,7 @@ export const MOCK_GYMS: Gym[] = [
     image: 'https://unsplash.com/photos/person-about-to-lift-the-barbel-WvDYdXDzkhs',
     gallery: [
       'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
+      'https://unsplash.com/photos/person-about-to-lift-the-barbel-WvDYdXDzkhs',
       'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80'
     ],
     amenities: ['Eleiko Competition Racks', 'Sauna & Ice Bath Plunge', 'InBody 770 Composition Analyzer', 'Keycard 24/7 Access', 'Protein Shake Bar'],
