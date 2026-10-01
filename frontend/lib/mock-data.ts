@@ -92,7 +92,7 @@ export const MOCK_GYMS: Gym[] = [
     address: '442 Ironworks Blvd, New York, NY 10001',
     dayPassPrice: 25,
     monthlyPrice: 120,
-    image: 'https://unsplash.com/photos/person-about-to-lift-the-barbel-WvDYdXDzkhs',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
     gallery: [
       'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
