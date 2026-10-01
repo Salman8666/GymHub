@@ -1,5 +1,10 @@
 import { prisma } from '../lib/db';
-import { hashPassword, verifyPassword, signToken, UserSessionPayload } from '../lib/jwt';
+import {
+  hashPassword,
+  verifyPassword,
+  signToken,
+  UserSessionPayload,
+} from '../lib/jwt';
 import { z } from 'zod';
 import { registerSchema, loginSchema } from '../schemas/auth';
 
@@ -8,25 +13,30 @@ type LoginInput = z.infer<typeof loginSchema>;
 
 export async function registerUser(input: RegisterInput) {
   const email = input.email.toLowerCase();
+
   const existingUser = await prisma.user.findUnique({
     where: { email },
   });
+
+  if (existingUser) {
+    throw new Error('USER_EXISTS: User already exists');
+  }
 
   const hashedPassword = hashPassword(input.password);
 
   const user = await prisma.user.create({
     data: {
       name: input.name,
-      email: input.email.toLowerCase(),
+      email,
       passwordHash: hashedPassword,
       role: input.role,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
+      avatar:
+        'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
     },
   });
 
   let trainerProfileId: string | undefined;
 
-  // Auto-create trainer profile if role is TRAINER
   if (input.role === 'TRAINER') {
     const profile = await prisma.trainerProfile.create({
       data: {
@@ -34,7 +44,10 @@ export async function registerUser(input: RegisterInput) {
         title: 'Certified Performance Coach',
         bio: 'Dedicated fitness professional specializing in strength, athletic conditioning, and body composition transformation.',
         location: 'New York, NY',
-        specialties: JSON.stringify(['Hypertrophy Science', 'Strength & Power']),
+        specialties: JSON.stringify([
+          'Hypertrophy Science',
+          'Strength & Power',
+        ]),
         experienceYears: 5,
         hourlyRate: 85.0,
         verified: true,
@@ -42,6 +55,7 @@ export async function registerUser(input: RegisterInput) {
         rankingScore: 80.0,
       },
     });
+
     trainerProfileId = profile.id;
   }
 
@@ -72,6 +86,7 @@ export async function registerUser(input: RegisterInput) {
 
 export async function loginUser(input: LoginInput) {
   const email = input.email.toLowerCase();
+
   const user = await prisma.user.findUnique({
     where: { email },
     include: { trainerProfile: true },
@@ -82,6 +97,7 @@ export async function loginUser(input: LoginInput) {
   }
 
   const isValid = verifyPassword(input.password, user.passwordHash);
+
   if (!isValid) {
     throw new Error('INVALID_CREDENTIALS: Invalid email or password');
   }
@@ -112,42 +128,7 @@ export async function loginUser(input: LoginInput) {
     token,
   };
 }
-export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const validatedData = registerSchema.parse(body);
-    const result = await registerUser(validatedData);
 
-    return NextResponse.json({ success: true, data: result }, { status: 201 });
-  } catch (error: any) {
-    if (error.name === 'ZodError') {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 'VALIDATION_ERROR',
-            message: error.errors[0]?.message || 'Invalid form input',
-          },
-        },
-        { status: 400 }
-      );
-    }
-
-    const message = error.message || 'Registration failed';
-    const isConflict = message.includes('USER_EXISTS');
-
-    return NextResponse.json(
-      {
-        success: false,
-        error: {
-          code: isConflict ? 'USER_EXISTS' : 'REGISTRATION_FAILED',
-          message: message.replace(/^USER_EXISTS:\s*/, ''),
-        },
-      },
-      { status: isConflict ? 409 : 400 }
-    );
-  }
-}
 export async function getUserById(id: string) {
   return prisma.user.findUnique({
     where: { id },
