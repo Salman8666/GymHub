@@ -147,7 +147,7 @@ export const MOCK_GYMS: Gym[] = [
 export const MOCK_TRAINERS: Trainer[] = [
   {
     id: 'trainer-marcus-vance',
-    name: 'Marcus Vance',
+    name: 'Marcus jeorge',
     title: 'IFBB Pro & Elite Strength Conditioning Coach',
     bio: 'Specializing in mechanical tension hypertrophy, prep coaching, and high-density metabolic conditioning with over 10+ years of athlete transformation experience.',
     rating: 4.98,
