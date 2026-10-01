@@ -196,7 +196,10 @@ export const MOCK_TRAINERS: Trainer[] = [
     location: 'Austin, TX',
     specialties: ['Powerlifting', 'Powerbuilding', 'Rehab Integration'],
     experienceYears: 8,
-    image: 'https://images.unsplash.com/photo-1578924608828-79a71150f711?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1lbiUyMHRyYWluZXIlMjBpbiUyMGd5bXxlbnwwfHwwfHx8MA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1578924608828-79a71150f711?w=auto=format&fit=crop&w=600&q=80',
+        gallery: [
+      'https://images.unsplash.com/photo-1578924608828-79a71150f711?w=auto=format&fit=crop&w=600&q=80'
+    ],
     verified: true,
     featured: false,
     stats: {
