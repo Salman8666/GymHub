@@ -197,9 +197,7 @@ export const MOCK_TRAINERS: Trainer[] = [
     specialties: ['Powerlifting', 'Powerbuilding', 'Rehab Integration'],
     experienceYears: 8,
     image: 'https://images.unsplash.com/photo-1578924608828-79a71150f711?w=auto=format&fit=crop&w=600&q=80',
-        gallery: [
-      'https://images.unsplash.com/photo-1578924608828-79a71150f711?w=auto=format&fit=crop&w=600&q=80'
-    ],
+    
     verified: true,
     featured: false,
     stats: {
