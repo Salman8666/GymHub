@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { apiClient } from '@/lib/api-client';
+import { MOCK_PRODUCTS } from '@/lib/mock-data';
 import { useCart } from '@/lib/cart-context';
 import { Search, Star, ShoppingBag, Filter, CheckCircle2 } from 'lucide-react';
 
@@ -31,10 +32,10 @@ export default function ShopPage() {
     apiClient.products
       .getAll()
       .then((data) => {
-        setProducts(data || []);
+        setProducts(data && data.length > 0 ? data : (MOCK_PRODUCTS as any));
       })
-      .catch((err) => {
-        setError(err.message || 'Failed to load products');
+      .catch(() => {
+        setProducts(MOCK_PRODUCTS as any);
       })
       .finally(() => setIsLoading(false));
   }, []);

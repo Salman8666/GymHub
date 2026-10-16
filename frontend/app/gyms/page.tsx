@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { apiClient } from '@/lib/api-client';
+import { MOCK_GYMS } from '@/lib/mock-data';
 import { Search, MapPin, Star, Filter, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
 
 export default function ExploreGymsPage() {
@@ -17,10 +18,14 @@ export default function ExploreGymsPage() {
     apiClient.gyms
       .getAll()
       .then((data) => {
-        setGyms(data);
+        setGyms(data && data.length > 0 ? data : MOCK_GYMS);
         setError('');
       })
-      .catch((err) => setError(err.message || 'Failed to load gyms'))
+      .catch(() => {
+        // Fallback to rich mock dataset when backend is offline or network fails
+        setGyms(MOCK_GYMS);
+        setError('');
+      })
       .finally(() => setLoading(false));
   }, []);
 

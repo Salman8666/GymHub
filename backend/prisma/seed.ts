@@ -147,7 +147,7 @@ async function main() {
       address: '442 Ironworks Blvd, New York, NY 10001',
       dayPassPrice: 25.0,
       monthlyPrice: 120.0,
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
       hours: '24 Hours / 7 Days a Week',
       featured: true,
       acType: 'AC',
@@ -158,9 +158,9 @@ async function main() {
 
   await prisma.gymImage.createMany({
     data: [
-      { gymId: ironSanctuary.id, url: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80', orderIndex: 0 },
-      { gymId: ironSanctuary.id, url: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80', orderIndex: 1 },
-      { gymId: ironSanctuary.id, url: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80', orderIndex: 2 },
+      { gymId: ironSanctuary.id, url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80', orderIndex: 0 },
+      { gymId: ironSanctuary.id, url: 'https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=800&q=80', orderIndex: 1 },
+      { gymId: ironSanctuary.id, url: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80', orderIndex: 2 },
     ],
   });
 
@@ -176,7 +176,7 @@ async function main() {
       price: 49.99,
       rating: 4.96,
       enrolledCount: 420,
-      image: 'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
       description: 'Comprehensive hypertrophy blueprint incorporating Lengthened Partial Reps, Progressive Overload tracking, and Periodized Deload Blocks.',
       rankingScore: 95.0,
     },

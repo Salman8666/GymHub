@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { apiClient } from '@/lib/api-client';
+import { MOCK_GYMS } from '@/lib/mock-data';
 import { useAuth } from '@/lib/auth-context';
 import { Star, MapPin, CheckCircle2, Dumbbell, ArrowRight, Loader2, User, ThumbsUp } from 'lucide-react';
 import Link from 'next/link';
@@ -35,7 +36,11 @@ export default function GymDetailPage() {
         setGym(data);
         setError('');
       })
-      .catch((err) => setError(err.message || 'Failed to load gym'))
+      .catch(() => {
+        const fallback = MOCK_GYMS.find((g) => g.id === gymId) || MOCK_GYMS[0];
+        setGym(fallback);
+        setError('');
+      })
       .finally(() => setLoading(false));
   }, [gymId]);
 

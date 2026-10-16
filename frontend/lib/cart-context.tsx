@@ -40,6 +40,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
   const loadCart = useCallback(async () => {
+    if (typeof window !== 'undefined' && !localStorage.getItem('gymhub-auth-token')) {
+      setCartItems([]);
+      setIsLoading(false);
+      return;
+    }
     setIsLoading(true);
     setError(null);
     try {

@@ -92,11 +92,11 @@ export const MOCK_GYMS: Gym[] = [
     address: '442 Ironworks Blvd, New York, NY 10001',
     dayPassPrice: 25,
     monthlyPrice: 120,
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80'
     ],
     amenities: ['Eleiko Competition Racks', 'Sauna & Ice Bath Plunge', 'InBody 770 Composition Analyzer', 'Keycard 24/7 Access', 'Protein Shake Bar'],
     equipment: ['Hammer Strength Iso-Lateral', 'Calibrated Steel Plates', 'Monolift Squat Cage', 'Custom Dumbbells up to 150lbs', 'Turf Sled Track'],
@@ -133,9 +133,10 @@ export const MOCK_GYMS: Gym[] = [
     address: '77 Forge Street, Austin, TX 78701',
     dayPassPrice: 20,
     monthlyPrice: 95,
-    image: 'https://images.unsplash.com/photo-1623874514711-0f321325f318?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1623874514711-0f321325f318?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=800&q=80'
     ],
     amenities: ['Pose Lighting Room', 'Outdoor Strongman Pit', 'Supplement Depot'],
     equipment: ['Nautilus Vintage Machines', 'Atlas Stones', 'Log Press Cages'],
@@ -278,7 +279,7 @@ export const MOCK_PLANS: FitnessPlan[] = [
     price: 49.99,
     rating: 4.96,
     enrolledCount: 420,
-    image: 'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
     description: 'Comprehensive hypertrophy blueprint incorporating Lengthened Partial Reps, Progressive Overload tracking, and Periodized Deload Blocks.'
   },
   {
@@ -294,7 +295,7 @@ export const MOCK_PLANS: FitnessPlan[] = [
     price: 39.99,
     rating: 4.88,
     enrolledCount: 290,
-    image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
     description: 'Calculated 1RM percentage scaling with autoregulated RPE sets for Squat, Bench, and Deadlift maximum total output.'
   }
 ];

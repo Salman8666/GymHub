@@ -70,7 +70,7 @@ export async function createFitnessPlan(trainerProfileId: string, data: any) {
       daysPerWeek: data.daysPerWeek ?? 5,
       difficulty: data.difficulty ?? 'Intermediate',
       price: data.price,
-      image: data.image ?? 'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=600&q=80',
+      image: data.image ?? 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=80',
       description: data.description,
       rankingScore: 85.0,
     },

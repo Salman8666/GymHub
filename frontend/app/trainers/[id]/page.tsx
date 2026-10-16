@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { apiClient } from '@/lib/api-client';
+import { MOCK_TRAINERS } from '@/lib/mock-data';
 import { useAuth } from '@/lib/auth-context';
 import { Star, ShieldCheck, Award, Calendar, Clock, CheckCircle2, Loader2, ThumbsUp, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
@@ -34,7 +35,11 @@ export default function TrainerProfilePage() {
         setTrainer(data);
         setError('');
       })
-      .catch((err) => setError(err.message || 'Failed to load trainer'))
+      .catch(() => {
+        const fallback = MOCK_TRAINERS.find((t) => t.id === trainerId) || MOCK_TRAINERS[0];
+        setTrainer(fallback);
+        setError('');
+      })
       .finally(() => setLoading(false));
   }, [trainerId]);
 

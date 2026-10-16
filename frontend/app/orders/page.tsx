@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { apiClient } from '@/lib/api-client';
+import { useAuth } from '@/lib/auth-context';
 import { Package, Truck, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
 
 interface OrderItem {
@@ -38,17 +39,23 @@ const statusStyles: Record<string, string> = {
 };
 
 export default function OrderHistoryPage() {
+  const { user } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!user) {
+      setOrders([]);
+      setIsLoading(false);
+      return;
+    }
     apiClient.orders
       .getAll()
       .then((data) => setOrders(data || []))
       .catch((err) => setError(err.message || 'Failed to load orders'))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [user]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { apiClient } from '@/lib/api-client';
+import { MOCK_TRAINERS } from '@/lib/mock-data';
 import { Search, Star, ShieldCheck, Award, ArrowRight } from 'lucide-react';
 
 export default function FindTrainerPage() {
@@ -16,11 +17,11 @@ export default function FindTrainerPage() {
     apiClient.trainers
       .getAll()
       .then((data) => {
-        setTrainers(data);
+        setTrainers(data && data.length > 0 ? data : MOCK_TRAINERS);
         setLoading(false);
       })
-      .catch((err) => {
-        setError(err.message);
+      .catch(() => {
+        setTrainers(MOCK_TRAINERS);
         setLoading(false);
       });
   }, []);

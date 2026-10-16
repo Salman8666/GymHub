@@ -3,12 +3,35 @@
  * Connects frontend React state directly to the production Backend services (/api/*)
  */
 
-const API_BASE_URL = process.env.PUBLIC_API_URL || 'https://gymhub-src.vercel.app/api';
+function getBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL;
+  }
+  if (process.env.PUBLIC_API_URL) {
+    return process.env.PUBLIC_API_URL;
+  }
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://localhost:5000/api';
+    }
+  }
+  return 'https://gymhub-src.vercel.app/api';
+}
 
 function getAuthHeader(): Record<string, string> {
   if (typeof window === 'undefined') return {};
   const token = localStorage.getItem('gymhub-auth-token');
   return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
+function buildQuery(params?: Record<string, any>): string {
+  if (!params) return '';
+  const filtered = Object.entries(params).filter(
+    ([_, val]) => val !== undefined && val !== null && val !== ''
+  );
+  if (filtered.length === 0) return '';
+  return `?${new URLSearchParams(filtered as any).toString()}`;
 }
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
@@ -18,8 +41,9 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     ...options.headers,
   };
 
+  const baseUrl = getBaseUrl();
   try {
-    const res = await fetch(`${API_BASE_URL}${endpoint}`, {
+    const res = await fetch(`${baseUrl}${endpoint}`, {
       ...options,
       headers,
     });
@@ -51,10 +75,8 @@ export const apiClient = {
   },
 
   trainers: {
-    getAll: (params?: { search?: string; maxPrice?: number; experience?: number }) => {
-      const q = new URLSearchParams(params as any).toString();
-      return request<any[]>(`/trainers?${q}`);
-    },
+    getAll: (params?: { search?: string; maxPrice?: number; experience?: number }) =>
+      request<any[]>(`/trainers${buildQuery(params)}`),
     getById: (id: string) => request<any>(`/trainers/${id}`),
     createReview: (id: string, data: { rating: number; comment: string }) =>
       request<any>(`/trainers/${id}/reviews`, {
@@ -70,10 +92,8 @@ export const apiClient = {
   },
 
   gyms: {
-    getAll: (params?: { search?: string; acType?: string; maxDayPass?: number }) => {
-      const q = new URLSearchParams(params as any).toString();
-      return request<any[]>(`/gyms?${q}`);
-    },
+    getAll: (params?: { search?: string; acType?: string; maxDayPass?: number }) =>
+      request<any[]>(`/gyms${buildQuery(params)}`),
     getById: (id: string) => request<any>(`/gyms/${id}`),
     create: (data: any) =>
       request<any>('/gyms', {
@@ -88,10 +108,8 @@ export const apiClient = {
   },
 
   plans: {
-    getAll: (params?: { search?: string; category?: string; difficulty?: string }) => {
-      const q = new URLSearchParams(params as any).toString();
-      return request<any[]>(`/plans?${q}`);
-    },
+    getAll: (params?: { search?: string; category?: string; difficulty?: string }) =>
+      request<any[]>(`/plans${buildQuery(params)}`),
     create: (data: any) =>
       request<any>('/plans', {
         method: 'POST',
@@ -100,10 +118,8 @@ export const apiClient = {
   },
 
   products: {
-    getAll: (params?: { search?: string; category?: string }) => {
-      const q = new URLSearchParams(params as any).toString();
-      return request<any[]>(`/products?${q}`);
-    },
+    getAll: (params?: { search?: string; category?: string }) =>
+      request<any[]>(`/products${buildQuery(params)}`),
     getById: (id: string) => request<any>(`/products/${id}`),
     create: (data: any) =>
       request<any>('/products', {
@@ -154,6 +170,11 @@ export const apiClient = {
 
   orders: {
     getAll: () => request<any[]>('/orders'),
+    updateStatus: (storeOrderId: string, status: string) =>
+      request<any>('/orders', {
+        method: 'PATCH',
+        body: JSON.stringify({ storeOrderId, status }),
+      }),
   },
 
   analytics: {

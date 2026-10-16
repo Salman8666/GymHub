@@ -67,7 +67,7 @@ export default function HomePage() {
             <div className="lg:col-span-5">
               <div className="relative rounded-xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 group">
                 <img
-                  src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80"
+                  src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80"
                   alt="Gym Hub Facility"
                   className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
                 />
