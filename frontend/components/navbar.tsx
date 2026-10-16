@@ -26,20 +26,20 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/95 border-b border-slate-200 dark:bg-[#1b1c1c]/95 dark:border-slate-800 text-slate-900 dark:text-white transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 min-w-0">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 gap-2 sm:gap-4 min-w-0">
           
           {/* Brand Logo & Desktop Navigation */}
-          <div className="flex items-center gap-3 xl:gap-6 min-w-0">
-            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#fbf9f8] p-1 border-2 border-[#1df269]/50 shadow-md flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shrink-0">
+          <div className="flex items-center gap-3 xl:gap-6 min-w-0 shrink-0 sm:shrink">
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-[#fbf9f8] p-1 border-2 border-[#1df269]/50 shadow-md flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform shrink-0">
                 <img src="/weblogo.jpeg" alt="GYM HUB Logo" className="w-full h-full object-cover scale-[1.85] origin-center" />
               </div>
               <div className="flex flex-col shrink-0">
                 <span className="font-black tracking-tighter text-base sm:text-lg leading-none text-slate-900 dark:text-white uppercase">
                   GYM<span className="text-[#1df269]">HUB</span>
                 </span>
-                <span className="text-[7.5px] sm:text-[8px] font-extrabold tracking-widest text-[#1df269] uppercase leading-tight mt-1">
+                <span className="text-[7.5px] sm:text-[8px] font-extrabold tracking-widest text-[#1df269] uppercase leading-tight mt-1 hidden sm:block">
                   CONNECT • TRAIN • GROW
                 </span>
               </div>
@@ -88,14 +88,14 @@ export function Navbar() {
           </div>
 
           {/* Right Header Actions */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Theme Switcher */}
             <ThemeSwitcher />
 
             {/* Shopping Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2 rounded-md border border-slate-200 bg-white text-slate-900 hover:border-[#1df269] transition shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+              className="relative p-2 rounded-md border border-slate-200 bg-white text-slate-900 hover:border-[#1df269] transition shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 shrink-0"
               title="View Shopping Cart"
             >
               <ShoppingBag className="w-4 h-4 text-[#1df269]" />
@@ -111,7 +111,7 @@ export function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="flex items-center gap-2 p-1.5 rounded-md border border-slate-200 bg-white text-slate-900 hover:border-[#1df269] transition shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  className="flex items-center gap-2 p-1.5 rounded-md border border-slate-200 bg-white text-slate-900 hover:border-[#1df269] transition shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 shrink-0"
                 >
                   <img src={user.avatar} alt={user.name} className="w-6 h-6 rounded-full object-cover border border-[#1df269]" />
                   <span className="text-xs font-bold uppercase tracking-wider hidden xl:inline">{user.name.split(' ')[0]}</span>
@@ -119,60 +119,63 @@ export function Navbar() {
 
                 {/* Dropdown Menu */}
                 {userDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-56 rounded-lg bg-white dark:bg-[#1b1c1c] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50">
-                    <div className="p-2 border-b border-slate-200 dark:border-slate-800 mb-1">
-                      <p className="font-extrabold text-xs text-slate-900 dark:text-white line-clamp-1">{user.name}</p>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
-                      <span className="inline-block mt-1 px-2 py-0.5 rounded bg-[#1df269]/20 text-[#1df269] text-[9px] font-black uppercase border border-[#1df269]/30">
-                        {user.role} Account
-                      </span>
-                    </div>
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setUserDropdownOpen(false)} />
+                    <div className="absolute right-0 mt-2 w-56 rounded-lg bg-white dark:bg-[#1b1c1c] border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50">
+                      <div className="p-2 border-b border-slate-200 dark:border-slate-800 mb-1">
+                        <p className="font-extrabold text-xs text-slate-900 dark:text-white line-clamp-1">{user.name}</p>
+                        <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
+                        <span className="inline-block mt-1 px-2 py-0.5 rounded bg-[#1df269]/20 text-[#1df269] text-[9px] font-black uppercase border border-[#1df269]/30">
+                          {user.role} Account
+                        </span>
+                      </div>
 
-                    {isTrainer && (
+                      {isTrainer && (
+                        <Link
+                          href="/dashboard"
+                          onClick={() => setUserDropdownOpen(false)}
+                          className="block px-3 py-2 text-xs font-black text-[#1df269] hover:bg-[#1df269]/10 rounded transition flex items-center justify-between"
+                        >
+                          <span>Trainer Dashboard</span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#1df269] animate-pulse" />
+                        </Link>
+                      )}
                       <Link
-                        href="/dashboard"
+                        href="/profile"
                         onClick={() => setUserDropdownOpen(false)}
-                        className="block px-3 py-2 text-xs font-black text-[#1df269] hover:bg-[#1df269]/10 rounded transition flex items-center justify-between"
+                        className="block px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded transition"
                       >
-                        <span>Trainer Dashboard</span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#1df269] animate-pulse" />
+                        My Profile & Digital Pass
                       </Link>
-                    )}
-                    <Link
-                      href="/profile"
-                      onClick={() => setUserDropdownOpen(false)}
-                      className="block px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded transition"
-                    >
-                      My Profile & Digital Pass
-                    </Link>
-                    <Link
-                      href="/my-plans"
-                      onClick={() => setUserDropdownOpen(false)}
-                      className="block px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded transition"
-                    >
-                      My Fitness Plans
-                    </Link>
-                    <Link
-                      href="/orders"
-                      onClick={() => setUserDropdownOpen(false)}
-                      className="block px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded transition"
-                    >
-                      Order History
-                    </Link>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setUserDropdownOpen(false);
-                      }}
-                      className="w-full text-left px-3 py-2 text-xs font-bold text-red-400 hover:bg-red-950/40 rounded transition flex items-center gap-1.5 mt-1 border-t border-slate-800"
-                    >
-                      <LogOut className="w-3.5 h-3.5" /> Sign Out
-                    </button>
-                  </div>
+                      <Link
+                        href="/my-plans"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="block px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded transition"
+                      >
+                        My Fitness Plans
+                      </Link>
+                      <Link
+                        href="/orders"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="block px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded transition"
+                      >
+                        Order History
+                      </Link>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setUserDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-3 py-2 text-xs font-bold text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded transition flex items-center gap-1.5 mt-1 border-t border-slate-200 dark:border-slate-800"
+                      >
+                        <LogOut className="w-3.5 h-3.5" /> Sign Out
+                      </button>
+                    </div>
+                  </>
                 )}
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="hidden sm:flex items-center gap-2">
                 <button
                   onClick={() => {
                     setAuthMode('login');
@@ -197,7 +200,8 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+              className="lg:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 shrink-0"
+              aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -244,14 +248,14 @@ export function Navbar() {
           )}
 
           {!user ? (
-            <div className="pt-3 border-t border-slate-800 flex gap-2">
+            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex gap-2">
               <button
                 onClick={() => {
                   setAuthMode('login');
                   setIsAuthOpen(true);
                   setMobileMenuOpen(false);
                 }}
-                className="w-full py-2.5 rounded border border-slate-300 text-slate-900 dark:border-slate-700 dark:text-white text-xs font-black uppercase text-center"
+                className="w-full py-2.5 rounded border border-slate-300 text-slate-900 dark:border-slate-700 dark:text-white text-xs font-black uppercase text-center hover:bg-slate-100 dark:hover:bg-slate-800 transition"
               >
                 Sign In
               </button>
@@ -261,17 +265,17 @@ export function Navbar() {
                   setIsAuthOpen(true);
                   setMobileMenuOpen(false);
                 }}
-                className="w-full py-2.5 rounded bg-[#1df269] text-black text-xs font-black uppercase text-center"
+                className="w-full py-2.5 rounded bg-[#1df269] text-black text-xs font-black uppercase text-center hover:opacity-90 transition shadow-sm"
               >
                 Register
               </button>
             </div>
           ) : (
-            <div className="pt-3 border-t border-slate-800 flex justify-between items-center">
+            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
               <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="text-xs font-bold uppercase text-[#1df269]">
                 My Account ({user.name})
               </Link>
-              <button onClick={() => { logout(); setMobileMenuOpen(false); }} className="text-xs font-bold text-red-400 uppercase">
+              <button onClick={() => { logout(); setMobileMenuOpen(false); }} className="text-xs font-bold text-red-500 dark:text-red-400 uppercase">
                 Sign Out
               </button>
             </div>

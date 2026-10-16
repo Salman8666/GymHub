@@ -46,7 +46,9 @@ export function ThemeSwitcher() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-2 z-50">
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+          <div className="absolute right-0 mt-2 w-64 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-2 z-50">
           {/* Role Toggle inside Dropdown */}
           <div className="p-2 border-b border-slate-200 dark:border-slate-800 mb-2">
             <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">
@@ -111,6 +113,7 @@ export function ThemeSwitcher() {
             </button>
           ))}
         </div>
+        </>
       )}
     </div>
   );

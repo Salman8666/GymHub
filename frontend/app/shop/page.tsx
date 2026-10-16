@@ -50,7 +50,12 @@ export default function ShopPage() {
 
   const handleAddToCart = async (product: Product) => {
     try {
-      await addToCart(product.id, undefined, 1);
+      await addToCart(product.id, undefined, 1, {
+        name: product.name,
+        unitPrice: product.price,
+        image: product.image,
+        category: product.category,
+      });
       setAddedId(product.id);
       setTimeout(() => setAddedId(null), 1500);
     } catch {

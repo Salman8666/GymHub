@@ -107,15 +107,16 @@ export default function ProductDetailPage() {
     : [];
 
   const handleAddToCart = async () => {
-    if (!user) {
-      setAuthMode('login');
-      setIsAuthOpen(true);
-      return;
-    }
-    if (!product || !canAddToCart) return;
+    if (!product) return;
 
     try {
-      await addToCart(product.id, selectedVariantId || undefined, quantity);
+      await addToCart(product.id, selectedVariantId || undefined, quantity, {
+        name: product.name,
+        unitPrice: displayPrice,
+        image: activeImage || product.image,
+        category: product.category,
+        variantName: selectedVariant?.name,
+      });
       setAdded(true);
       setTimeout(() => setAdded(false), 2000);
     } catch {
